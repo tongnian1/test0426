@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Vercel 部署测试</title>
+</head>
+<body>
+  <h1>前后端通信测试</h1>
+  <button id="fetchBtn">获取后端数据</button>
+  <div id="result" style="margin-top: 20px; color: blue;"></div>
+
+  <script>
+    document.getElementById('fetchBtn').addEventListener('click', async () => {
+      try {
+        // 直接请求 /api/hello 接口
+        const response = await fetch('/api/hello?name=用户');
+        const data = await response.json();
+        
+        // 将结果显示在页面上
+        document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+      } catch (error) {
+        console.error('请求失败:', error);
+        document.getElementById('result').innerText = '请求失败，请查看控制台';
+      }
+    });
+  </script>
+</body>
+</html>
